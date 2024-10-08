@@ -4,6 +4,9 @@
 # Log file
 *.log
 
+#README FILE
+README.md
+
 # BlueJ files
 *.ctxt
 

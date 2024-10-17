@@ -1,0 +1,34 @@
+@startuml
+
+actor Organization as "Organization"
+
+rectangle Database
+
+rectangle "World Information System" {
+    usecase UC1 as "Get populations
+    by location"
+    usecase UC2 as "Get the population of a location"
+    usecase UC3 as "Get the number of
+     people who speak,
+     Chinese, English, Hindi,
+      Spanish and Arabic"
+    usecase UCa as "Print World
+    Population Report."
+    usecase UCb as "Print the population"
+    usecase UCc as "Print the languages
+    in descending order"
+
+    Organization - UC1
+    UC1 ..> UCa : include
+    UC1 - Database
+
+    Organization - UC2
+    UC2 ..> UCb : include
+    UC2 - Database
+
+    Organization - UC3
+    UC3 ..> UCc : include
+    UC3 - Database
+}
+
+@enduml

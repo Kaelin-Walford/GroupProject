@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
@@ -14,7 +15,7 @@ public class App
 
         //Creating an object of PopulationOfCountries and running the functions
         PopulationOfCountries populationOfCountries = new PopulationOfCountries();
-        CountryReport country = populationOfCountries.getCountry("ABW", a.con);
+        ArrayList<CountryReport> country = populationOfCountries.getCountry(a.con);
 
         populationOfCountries.displayCountry(country);
 

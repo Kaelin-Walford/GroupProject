@@ -3,6 +3,7 @@ package com.napier.sem;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * Class for creating population of countries reports
@@ -10,22 +11,23 @@ import java.sql.Statement;
  */
 public class PopulationOfCountries
 {
-    public void displayCountry(CountryReport country)
+    public void displayCountry(ArrayList<CountryReport> country)
     {
         if(country != null)
         {
-            System.out.println(
-                    country.Code + " "
-                            + country.Name + " "
-                            + country.Continent + " "
-                            + country.Region + " "
-                            + country.Population + " "
-                            + country.Capital + " "
-            );
+            for(CountryReport countryTemp : country){
+                System.out.println(
+                        countryTemp.Code + " "
+                                + countryTemp.Name + " "
+                                + countryTemp.Continent + " "
+                                + countryTemp.Region + " "
+                                + countryTemp.Population + " "
+                                + countryTemp.Capital + " ");
+            }
         }
     }
 
-    public CountryReport getCountry(String code, Connection con)
+    public ArrayList<CountryReport> getCountry(Connection con)
     {
         try
         {
@@ -35,26 +37,26 @@ public class PopulationOfCountries
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country "
-                            + "WHERE Code = '" + code + "'";
+                            + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<CountryReport> country = new ArrayList<>();
+
             // Return new employee if valid.
             // Check one is returned
-            if (rset.next())
+            while (rset.next())
             {
-                CountryReport country = new CountryReport();
-                country.Code = rset.getString("code");
-                country.Name = rset.getString("name");
-                country.Continent = rset.getString("continent");
-                country.Region = rset.getString("region");
-                country.Population = rset.getInt("population");
-                country.Capital = rset.getString("capital");
-                return country;
+                CountryReport countryTemp = new CountryReport();
+                countryTemp.Code = rset.getString("code");
+                countryTemp.Name = rset.getString("name");
+                countryTemp.Continent = rset.getString("continent");
+                countryTemp.Region = rset.getString("region");
+                countryTemp.Population = rset.getInt("population");
+                countryTemp.Capital = rset.getString("capital");
+                country.add(countryTemp);
             }
-            else
-            {
-                return null;
-            }
+            return country;
         }
         catch (Exception e)
         {

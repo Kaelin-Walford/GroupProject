@@ -35,9 +35,9 @@ public class PopulationOfCountries
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country "
-                            + "ORDER BY Population DESC";
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
+                            + "FROM country LEFT JOIN city ON country.Capital = city.ID "
+                            + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -53,7 +53,7 @@ public class PopulationOfCountries
                 countryTemp.Continent = rset.getString("continent");
                 countryTemp.Region = rset.getString("region");
                 countryTemp.Population = rset.getInt("population");
-                countryTemp.Capital = rset.getString("capital");
+                countryTemp.Capital = rset.getString("city.Name");
                 country.add(countryTemp);
             }
             return country;

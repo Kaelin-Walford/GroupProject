@@ -8,30 +8,30 @@ public class CountryReport
     /**
      * Country Code
      */
-    public String code;
+    public String Code;
 
     /**
      * Country Name
      */
-    public String name;
+    public String Name;
 
     /**
      * Country Continent
      */
-    public String continent;
+    public String Continent;
 
     /**
      * Country Region
      */
-    public String region;
+    public String Region;
 
     /**
      * Country Population
      */
-    public int population;
+    public int Population;
 
     /**
      * Country Capital
      */
-    public String capital;
+    public String Capital;
 }

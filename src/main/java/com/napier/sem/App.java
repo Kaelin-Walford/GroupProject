@@ -12,6 +12,34 @@ public class App
         // Connect to database
         a.connect();
 
+        //Creating an object of PopulationOfCountries and running the functions
+        PopulationOfCountries populationOfCountries = new PopulationOfCountries();
+        CountryReport country = populationOfCountries.getCountry("ABW", a.con);
+
+        populationOfCountries.displayCountry(country);
+
+        //Creating an object of PopulationOfCities and running the main function
+        PopulationOfCities populationOfCities = new PopulationOfCities();
+        populationOfCities.main(args, a);
+
+        //Creating an object of PopulationOfCapitalCities and running the main function
+        PopulationOfCapitalCities populationOfCapitalCities = new PopulationOfCapitalCities();
+        populationOfCapitalCities.main(args, a);
+
+        //Creating an object of PopulationOfPeople and running the main function
+        PopulationOfPeople populationOfPeople = new PopulationOfPeople();
+        populationOfPeople.main(args, a);
+
+        //Creating an object of PopulationInformation and running the main function
+        PopulationInformation populationInformation = new PopulationInformation();
+        populationInformation.main(args, a);
+
+        //Creating an object of LanguageInformation and running the main function
+        LanguageInformation languageInformation = new LanguageInformation();
+        languageInformation.main(args, a);
+
+
+
         // Disconnect from database
         a.disconnect();
     }
@@ -20,7 +48,7 @@ public class App
      * Connection to MySQL database.
      */
 
-    private Connection con = null;
+    public Connection con = null;
 
     /**
      * Connect to the MySQL database.
@@ -48,7 +76,7 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(3000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
@@ -88,4 +116,6 @@ public class App
             }
         }
     }
+
+
 }

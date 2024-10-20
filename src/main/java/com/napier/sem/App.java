@@ -38,39 +38,54 @@ public class App
             String region = "Southern Europe";
             country = populationOfCountries.getCountriesInRegion(a.con, region);
             populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
-            /**
-            System.out.println("What continent would you like to get a report of: ");
-            try {
-                String input = reader.readLine();
-                country = populationOfCountries.getCountriesInContinent(a.con, input);
-                populationOfCountries.displayCountry(country);
-            } catch (IOException e) {
-                System.out.println(e);
-            }
-             */
+            //report on the top N countries in the world
+            int N = 5;
+            country = populationOfCountries.getTheTopNCountries(a.con, N);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report on the top N countries in a continent
+            country = populationOfCountries.getTheTopNCountriesInContinent(a.con, N, continent);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report on the top N countries in a region
+            country = populationOfCountries.getTheTopNCountriesInRegion(a.con, N, region);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
-        //Creating an object of PopulationOfCities and running the main function
-        PopulationOfCities populationOfCities = new PopulationOfCities();
-        populationOfCities.main(args, a);
+        {
+            //Creating an object of PopulationOfCities and running the main function
+            PopulationOfCities populationOfCities = new PopulationOfCities();
+            populationOfCities.main(args, a);
+        }
 
-        //Creating an object of PopulationOfCapitalCities and running the main function
-        PopulationOfCapitalCities populationOfCapitalCities = new PopulationOfCapitalCities();
-        populationOfCapitalCities.main(args, a);
+        {
+            //Creating an object of PopulationOfCapitalCities and running the main function
+            PopulationOfCapitalCities populationOfCapitalCities = new PopulationOfCapitalCities();
+            populationOfCapitalCities.main(args, a);
+        }
 
-        //Creating an object of PopulationOfPeople and running the main function
-        PopulationOfPeople populationOfPeople = new PopulationOfPeople();
-        populationOfPeople.main(args, a);
+        {
+            //Creating an object of PopulationOfPeople and running the main function
+            PopulationOfPeople populationOfPeople = new PopulationOfPeople();
+            populationOfPeople.main(args, a);
+        }
 
-        //Creating an object of PopulationInformation and running the main function
-        PopulationInformation populationInformation = new PopulationInformation();
-        populationInformation.main(args, a);
+        {
+            //Creating an object of PopulationInformation and running the main function
+            PopulationInformation populationInformation = new PopulationInformation();
+            populationInformation.main(args, a);
+        }
 
-        //Creating an object of LanguageInformation and running the main function
-        LanguageInformation languageInformation = new LanguageInformation();
-        languageInformation.main(args, a);
-
+        {
+            //Creating an object of LanguageInformation and running the main function
+            LanguageInformation languageInformation = new LanguageInformation();
+            languageInformation.main(args, a);
+        }
 
 
         // Disconnect from database

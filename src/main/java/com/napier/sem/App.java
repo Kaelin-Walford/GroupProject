@@ -1,6 +1,10 @@
 package com.napier.sem;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
@@ -12,32 +16,76 @@ public class App
         // Connect to database
         a.connect();
 
-        //Creating an object of PopulationOfCountries and running the functions
-        PopulationOfCountries populationOfCountries = new PopulationOfCountries();
-        CountryReport country = populationOfCountries.getCountry("ABW", a.con);
+        {
+            //Creating an object of PopulationOfCountries and running the functions
+            PopulationOfCountries populationOfCountries = new PopulationOfCountries();
 
-        populationOfCountries.displayCountry(country);
+            //create bufferreader to get an input from the console
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        //Creating an object of PopulationOfCities and running the main function
-        PopulationOfCities populationOfCities = new PopulationOfCities();
-        populationOfCities.main(args, a);
+            //report for all the countries in the world
+            ArrayList<CountryReport> country = populationOfCountries.getCountry(a.con);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
-        //Creating an object of PopulationOfCapitalCities and running the main function
-        PopulationOfCapitalCities populationOfCapitalCities = new PopulationOfCapitalCities();
-        populationOfCapitalCities.main(args, a);
+            //report for all the countries in a continent
+            String continent = "Europe";
+            country = populationOfCountries.getCountriesInContinent(a.con, continent);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
-        //Creating an object of PopulationOfPeople and running the main function
-        PopulationOfPeople populationOfPeople = new PopulationOfPeople();
-        populationOfPeople.main(args, a);
+            //report for all the countries in a region
+            String region = "Southern Europe";
+            country = populationOfCountries.getCountriesInRegion(a.con, region);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
-        //Creating an object of PopulationInformation and running the main function
-        PopulationInformation populationInformation = new PopulationInformation();
-        populationInformation.main(args, a);
+            //report on the top N countries in the world
+            int N = 5;
+            country = populationOfCountries.getTheTopNCountries(a.con, N);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
-        //Creating an object of LanguageInformation and running the main function
-        LanguageInformation languageInformation = new LanguageInformation();
-        languageInformation.main(args, a);
+            //report on the top N countries in a continent
+            country = populationOfCountries.getTheTopNCountriesInContinent(a.con, N, continent);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
+            //report on the top N countries in a region
+            country = populationOfCountries.getTheTopNCountriesInRegion(a.con, N, region);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+        }
+
+        {
+            //Creating an object of PopulationOfCities and running the main function
+            PopulationOfCities populationOfCities = new PopulationOfCities();
+            populationOfCities.main(args, a);
+        }
+
+        {
+            //Creating an object of PopulationOfCapitalCities and running the main function
+            PopulationOfCapitalCities populationOfCapitalCities = new PopulationOfCapitalCities();
+            populationOfCapitalCities.main(args, a);
+        }
+
+        {
+            //Creating an object of PopulationOfPeople and running the main function
+            PopulationOfPeople populationOfPeople = new PopulationOfPeople();
+            populationOfPeople.main(args, a);
+        }
+
+        {
+            //Creating an object of PopulationInformation and running the main function
+            PopulationInformation populationInformation = new PopulationInformation();
+            populationInformation.main(args, a);
+        }
+
+        {
+            //Creating an object of LanguageInformation and running the main function
+            LanguageInformation languageInformation = new LanguageInformation();
+            languageInformation.main(args, a);
+        }
 
 
         // Disconnect from database

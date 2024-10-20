@@ -8,6 +8,6 @@ public class LanguageInformation
 {
     public static void main(String[] args, App a)
     {
-        System.out.println("LanguageInformation");
+        //System.out.println("LanguageInformation");
     }
 }

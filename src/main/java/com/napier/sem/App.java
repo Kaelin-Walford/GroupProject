@@ -1,5 +1,8 @@
 package com.napier.sem;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -13,11 +16,40 @@ public class App
         // Connect to database
         a.connect();
 
-        //Creating an object of PopulationOfCountries and running the functions
-        PopulationOfCountries populationOfCountries = new PopulationOfCountries();
-        ArrayList<CountryReport> country = populationOfCountries.getCountry(a.con);
+        {
+            //Creating an object of PopulationOfCountries and running the functions
+            PopulationOfCountries populationOfCountries = new PopulationOfCountries();
 
-        populationOfCountries.displayCountry(country);
+            //create bufferreader to get an input from the console
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            //report for all the countries in the world
+            ArrayList<CountryReport> country = populationOfCountries.getCountry(a.con);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report for all the countries in a continent
+            String continent = "Europe";
+            country = populationOfCountries.getCountriesInContinent(a.con, continent);
+            populationOfCountries.displayCountry(country);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report for all the countries in a region
+            String region = "Southern Europe";
+            country = populationOfCountries.getCountriesInRegion(a.con, region);
+            populationOfCountries.displayCountry(country);
+
+            /**
+            System.out.println("What continent would you like to get a report of: ");
+            try {
+                String input = reader.readLine();
+                country = populationOfCountries.getCountriesInContinent(a.con, input);
+                populationOfCountries.displayCountry(country);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+             */
+        }
 
         //Creating an object of PopulationOfCities and running the main function
         PopulationOfCities populationOfCities = new PopulationOfCities();

@@ -8,6 +8,6 @@ public class PopulationOfPeople
 {
     public static void main(String[] args, App a)
     {
-
+        double worldPopulationBillion = 8.2;
     }
 }

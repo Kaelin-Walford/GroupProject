@@ -6,29 +6,79 @@ rectangle Database
 
 rectangle "World Information System" {
     usecase UC1 as "Get populations
+    of countries
     by location"
-    usecase UC2 as "Get the population of a location"
-    usecase UC3 as "Get the number of
+    usecase UC2 as "Get top
+    N populated
+     countries"
+    usecase UC3 as "Get populations
+    of cities
+    by location"
+    usecase UC4 as "Get top N
+    populated cities"
+    usecase UC5 as "Get populations of
+    capital cities
+    by location"
+    usecase UC6 as "get top
+    N populated
+    capital cities"
+    usecase UC7 as "get the population of
+    people living and
+    not living in cities"
+    usecase UC8 as "Get the population
+    of a location"
+    usecase UC9 as "Get the number of
      people who speak,
      Chinese, English, Hindi,
       Spanish and Arabic"
-    usecase UCa as "Print World
-    Population Report."
+    usecase UCa as "Print the populations of
+    countries Report."
     usecase UCb as "Print the population"
     usecase UCc as "Print the languages
     in descending order"
+    usecase UCd as "Print the populations of
+    cities Report."
+    usecase UCe as "Print the populations of
+    capital cities Report."
+    usecase UCf as "Print the number of
+    people living and
+    not living in cities."
 
     Organization - UC1
     UC1 ..> UCa : include
     UC1 - Database
 
     Organization - UC2
-    UC2 ..> UCb : include
+    UC2 ..> UCa : include
     UC2 - Database
 
     Organization - UC3
-    UC3 ..> UCc : include
+    UC3 ..> UCd : include
     UC3 - Database
+
+    Organization - UC4
+    UC4 ..> UCd : include
+    UC4 - Database
+
+    Organization - UC5
+    UC5 ..> UCe : include
+    UC5 - Database
+
+    Organization - UC6
+    UC6 ..> UCe : include
+    UC6 - Database
+
+    Organization - UC7
+    UC7 ..> UCf : include
+    UC7 - Database
+
+    Organization - UC8
+    UC8 ..> UCb : include
+    UC8 - Database
+
+    Organization - UC9
+    UC9 ..> UCc : include
+    UC9 - Database
 }
 
 @enduml

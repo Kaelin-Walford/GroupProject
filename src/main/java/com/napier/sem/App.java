@@ -102,6 +102,10 @@ public class App
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
+            //Report for the top N capital cities in a region
+            capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInRegion(a.con, N, region);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
         {

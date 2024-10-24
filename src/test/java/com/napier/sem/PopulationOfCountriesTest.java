@@ -20,38 +20,38 @@ public class PopulationOfCountriesTest
 
     //DisplayCountries Tests
 
-        @Test
-        void displayCountriesTestNull ()
-        {
-            app.displayCountry(null);
-        }
+    @Test
+    void displayCountriesTestNull ()
+    {
+        app.displayCountry(null);
+    }
 
-        @Test
-        void displayCountriesTestEmpty ()
-        {
-            ArrayList<CountryReport> countryReports = new ArrayList<CountryReport>();
-            app.displayCountry(countryReports);
-        }
+    @Test
+    void displayCountriesTestEmpty ()
+    {
+        ArrayList<CountryReport> countryReports = new ArrayList<CountryReport>();
+        app.displayCountry(countryReports);
+    }
 
-        @Test
-        void displayCountriesTestContainsNull ()
-        {
-            ArrayList<CountryReport> countryReports = new ArrayList<CountryReport>();
-            countryReports.add(null);
-            app.displayCountry(countryReports);
-        }
+    @Test
+    void displayCountriesTestContainsNull ()
+    {
+        ArrayList<CountryReport> countryReports = new ArrayList<CountryReport>();
+        countryReports.add(null);
+        app.displayCountry(countryReports);
+    }
 
-        @Test
-        void displayCountries ()
-        {
-            ArrayList<CountryReport> countryReports = new ArrayList<CountryReport>();
-            CountryReport countryReport = new CountryReport();
-            countryReport.Name = "Scotland";
-            countryReport.Continent = "Europe";
-            countryReport.Region = "UK";
-            countryReport.Population = 1000000;
-            countryReport.Capital = "Edinburgh";
-            countryReports.add(countryReport);
-            app.displayCountry(countryReports);
-        }
+    @Test
+    void displayCountries ()
+    {
+        ArrayList<CountryReport> countryReports = new ArrayList<CountryReport>();
+        CountryReport countryReport = new CountryReport();
+        countryReport.Name = "Scotland";
+        countryReport.Continent = "Europe";
+        countryReport.Region = "UK";
+        countryReport.Population = 1000000;
+        countryReport.Capital = "Edinburgh";
+        countryReports.add(countryReport);
+        app.displayCountry(countryReports);
+    }
 }

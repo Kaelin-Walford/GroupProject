@@ -12,14 +12,13 @@ import java.util.ArrayList;
 public class PopulationOfCountries
 {
 
-    //function to display the all the countries in the report that was generated
+    //function to display all the countries in the report that was generated
     public void displayCountry(ArrayList<CountryReport> country)
     {
 
         //checks that country has something in it
         if(country != null)
         {
-
             //Loops through each entry in country and outputs the contents of it
             for(CountryReport countryTemp : country){
                 if(countryTemp != null)
@@ -40,14 +39,14 @@ public class PopulationOfCountries
         }
     }
 
-    //function to get return all the countries in the world ordered by the population from greatest to smallest
+    //function to return all the countries in the world ordered by the population from greatest to smallest
     public ArrayList<CountryReport> getCountry(Connection con)
     {
         try
         {
             // Create an SQL statement
             Statement stmt = con.createStatement();
-            // Create string for SQL statement to get the population of all the countries in a continent
+            // Create string for SQL statement to get the population of all the countries in the world
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
                             + "FROM country LEFT JOIN city ON country.Capital = city.ID "

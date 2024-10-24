@@ -78,6 +78,12 @@ public class App
             ArrayList<CapitalCityReport> capitalCities = populationOfCapitalCities.getCapitalCities(a.con);
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for all the capital cities in a continent
+            String continent = "Europe";
+            capitalCities = populationOfCapitalCities.getCapitalCitiesInContinent(a.con, continent);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
         {

@@ -96,6 +96,12 @@ public class App
             capitalCities = populationOfCapitalCities.getTopNCapitalCities(a.con, N);
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for the top N capital cities in a continent
+            capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInContinent(a.con, N, continent);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
         }
 
         {

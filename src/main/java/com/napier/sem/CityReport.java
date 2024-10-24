@@ -5,6 +5,7 @@ package com.napier.sem;
  */
 public class CityReport
 {
+
     /**
      *  Cities Name
      */

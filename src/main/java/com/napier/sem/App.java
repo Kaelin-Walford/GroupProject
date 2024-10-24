@@ -91,6 +91,11 @@ public class App
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
+            //Report for the top N capital cities in the world
+            int N = 5;
+            capitalCities = populationOfCapitalCities.getTopNCapitalCities(a.con, N);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
         {

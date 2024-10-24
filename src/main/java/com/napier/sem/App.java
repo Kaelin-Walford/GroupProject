@@ -84,6 +84,13 @@ public class App
             capitalCities = populationOfCapitalCities.getCapitalCitiesInContinent(a.con, continent);
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for all the capital cities in a region
+            String region = "Southern Europe";
+            capitalCities = populationOfCapitalCities.getCapitalCitiesInRegion(a.con, region);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
         }
 
         {

@@ -115,7 +115,50 @@ public class PopulationOfCapitalCities
         {
             //returns an error if the query failed to get the capital city details
             System.out.println(e.getMessage());
-            System.out.println("Failed to get capital city details");
+            System.out.println("Failed to get capital city details in the selected continent");
+            return null;
+        }
+    }
+
+    //function to return all the capital cities in a region ordered from population largest to smallest
+    public ArrayList<CapitalCityReport> getCapitalCitiesInRegion(Connection con, String region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement to get the population of all the capital cities in a region
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population "
+                            + "FROM country LEFT JOIN city ON country.Capital = city.ID "
+                            + "WHERE country.Region = '" + region + "' "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            //Create an arraylist to store all the capital cities in a region
+            ArrayList<CapitalCityReport> capitalCities = new ArrayList<>();
+
+            //loop through all the capital cities
+            while (rset.next())
+            {
+                //create a variable capitalCity to store an individual capital city
+                CapitalCityReport capitalCity = new CapitalCityReport();
+                capitalCity.Name = rset.getString("Name");
+                capitalCity.Country = rset.getString("country.Name");
+                capitalCity.Population = rset.getInt("Population");
+
+                //add the current capital city to the arraylist
+                capitalCities.add(capitalCity);
+            }
+            //returns the arraylist of countries
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            //returns an error if the query failed to get the capital city details
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details in the selected region");
             return null;
         }
     }

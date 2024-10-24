@@ -22,14 +22,21 @@ public class PopulationOfCountries
 
             //Loops through each entry in country and outputs the contents of it
             for(CountryReport countryTemp : country){
-                System.out.println(
-                        countryTemp.Code + " "
-                                + countryTemp.Name + " "
-                                + countryTemp.Continent + " "
-                                + countryTemp.Region + " "
-                                + countryTemp.Population + " "
-                                + countryTemp.Capital + " ");
+                if(countryTemp != null)
+                {
+                    System.out.println(
+                            countryTemp.Code + " "
+                                    + countryTemp.Name + " "
+                                    + countryTemp.Continent + " "
+                                    + countryTemp.Region + " "
+                                    + countryTemp.Population + " "
+                                    + countryTemp.Capital + " ");
+                }
             }
+        }
+        else
+        {
+            System.out.println("No countries found");
         }
     }
 

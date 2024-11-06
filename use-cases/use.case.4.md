@@ -1,15 +1,15 @@
 
-# USE CASE: 1  Produce a report on all the countries in the world organised by largest population to smallest.
+# USE CASE: 4  Produce a report on the top N cities in a selected location chosen by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a *Company* we want *to produce a report on all the countries in the world organised by largest population to smallest* so that *we can report on population information.*
+As an *Organisation* we want *to produce reports on the top N cities in a location* so that *we can report on population information.*
 
 ### Scope
 
-Company.
+Organisation.
 
 ### Level
 
@@ -17,29 +17,27 @@ Primary task.
 
 ### Preconditions
 
-We know the role.  Database contains current employee salary data.
+Database contains the populations of the cities in the world.
 
 ### Success End Condition
 
-A report is available for HR to provide to finance.
+A report is available for the organisation in the desired location.
 
 ### Failed End Condition
 
-No report is produced.
+No report is available.
 
 ### Primary Actor
 
-HR Advisor.
+Organisation.
 
 ### Trigger
 
-A request for finance information is sent to HR.
+A report is selected from the list of available reports.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Finance request salary information.
-2. HR advisor extracts current salary information of all employees.
-3. HR advisor provides report to finance.
+1. Desired report is printed to the console.
 
 ## EXTENSIONS
 
@@ -51,4 +49,4 @@ None.
 
 ## SCHEDULE
 
-**DUE DATE**: Release 1.0
+**DUE DATE**: 29/11/24

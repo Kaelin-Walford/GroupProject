@@ -20,8 +20,10 @@ public class App
             //Creating an object of PopulationOfCountries and running the functions
             PopulationOfCountries populationOfCountries = new PopulationOfCountries();
 
-            //create bufferreader to get an input from the console
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            //Print Country header
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("Country Reports");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //report for all the countries in the world
             ArrayList<CountryReport> country = populationOfCountries.getCountry(a.con);
@@ -66,7 +68,44 @@ public class App
         {
             //Creating an object of PopulationOfCapitalCities and running the main function
             PopulationOfCapitalCities populationOfCapitalCities = new PopulationOfCapitalCities();
-            populationOfCapitalCities.main(args, a);
+
+            //Print capital cities header
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("Capital Cities Report");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report for all the capital cities in the world
+            ArrayList<CapitalCityReport> capitalCities = populationOfCapitalCities.getCapitalCities(a.con);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for all the capital cities in a continent
+            String continent = "Europe";
+            capitalCities = populationOfCapitalCities.getCapitalCitiesInContinent(a.con, continent);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for all the capital cities in a region
+            String region = "Southern Europe";
+            capitalCities = populationOfCapitalCities.getCapitalCitiesInRegion(a.con, region);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for the top N capital cities in the world
+            int N = 5;
+            capitalCities = populationOfCapitalCities.getTopNCapitalCities(a.con, N);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for the top N capital cities in a continent
+            capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInContinent(a.con, N, continent);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for the top N capital cities in a region
+            capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInRegion(a.con, N, region);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
         {

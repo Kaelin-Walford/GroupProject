@@ -1,11 +1,11 @@
 
-# USE CASE: 1  Produce a report on the populations of a selected place by the user.
+# USE CASE: 1  Produce a report on the populations of all the countries in a selected place chosen by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *Organisation* we want *to produce reports on the populations of the world* so that *we can report on population information.*
+As an *Organisation* we want *to produce reports on the populations of countries in a location* so that *we can report on population information.*
 
 ### Scope
 

@@ -68,9 +68,13 @@ public class App
             System.out.println("City Reports");
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
+            ArrayList<CityReport> city = populationOfCities.getCitiesInWorld(a.con);
+            populationOfCities.displayCities(city);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
             //report for all the cities in a continent
             String continent = "Europe";
-            ArrayList<CityReport> city = populationOfCities.getCitiesInContinent(a.con, continent);
+            city = populationOfCities.getCitiesInContinent(a.con, continent);
             populationOfCities.displayCities(city);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 

@@ -63,6 +63,17 @@ public class App
             //Creating an object of PopulationOfCities and running the main function
             PopulationOfCities populationOfCities = new PopulationOfCities();
 
+            //Print City header
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City Reports");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report for all the cities in a continent
+            String continent = "Europe";
+            ArrayList<CityReport> city = populationOfCities.getCitiesInContinent(a.con, continent);
+            populationOfCities.displayCities(city);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
         }
 
         {

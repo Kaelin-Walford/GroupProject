@@ -12,38 +12,42 @@ import java.util.ArrayList;
 public class PopulationOfCities
 {
 
-    public static void displayCities(ArrayList<CityReport> cities)
+    public void displayCities(ArrayList<CityReport> cities)
     {
 
 
-        try
-        {
+        //try
+        //{
             if (cities != null)
             {
                 for (CityReport city : cities)
                 {
-                    System.out.println
-                            (
-                                    city.name + " "
-                                    + city.country + " "
-                                    + city.district + " "
-                                    + city.population + " "
-                            );
+                    if (city != null)
+                    {
+                        System.out.println
+                                (
+                                                  city.name + " "
+                                                + city.Country + " "
+                                                + city.district + " "
+                                                + city.population + " "
+                                );
+                        System.out.println("test to say hi");
+                    }
                 }
             }
             else
             {
-                throw new Exception("Array Is Null");
+                System.out.println("Array Is Null");
             }
 
-        }
-        catch (Exception e)
-        {
-            System.out.println(e);
-        }
+        //}
+        //catch (Exception e)
+        //{
+          //  System.out.println(e);
+        //}
     }
 
-    public ArrayList<CityReport> getCity(Connection con, String continent)
+    public ArrayList<CityReport> getCitiesInContinent(Connection con, String continent)
     {
         try
         {
@@ -51,9 +55,9 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a continent
             String strSelect =
-                    "SELECT city.name,country.name,city.Population,  city.district "
-                            + "FROM country LEFT JOIN city ON country.Capital = city.ID "
-                            + "WHERE continent = country.Continent "
+                    "SELECT city.Name,country.Name,city.Population, city.District "
+                            + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
+                            + "WHERE country.Continent = '" + continent + "'"
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -64,10 +68,10 @@ public class PopulationOfCities
             //loop through all the citys
             while (rset.next())
             {
-                //create a variable citytemp to store an individual country
+                //create a variable citytemp to store an individual city
                 CityReport cityTemp = new CityReport();
                 cityTemp.name = rset.getString("name");
-                cityTemp.country = rset.getString("country");
+                cityTemp.Country = rset.getString("country");
                 cityTemp.district = rset.getString("district");
                 cityTemp.population = rset.getInt("population");
 

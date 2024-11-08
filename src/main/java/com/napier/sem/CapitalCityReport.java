@@ -8,15 +8,15 @@ public class CapitalCityReport
     /**
      * Name of the city
      */
-    public String name;
+    public String Name;
 
     /**
      * Country the city is in
      */
-    public String country;
+    public String Country;
 
     /**
      * Population of the city
      */
-    public int population;
+    public int Population;
 }

@@ -62,7 +62,7 @@ public class App
         {
             //Creating an object of PopulationOfCities and running the main function
             PopulationOfCities populationOfCities = new PopulationOfCities();
-            populationOfCities.main(args, a);
+
         }
 
         {

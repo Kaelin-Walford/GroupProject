@@ -31,7 +31,7 @@ public class PopulationOfCities
                                                 + city.district + " "
                                                 + city.population + " "
                                 );
-                        System.out.println("test to say hi");
+
                     }
                 }
             }
@@ -71,7 +71,7 @@ public class PopulationOfCities
                 //create a variable citytemp to store an individual city
                 CityReport cityTemp = new CityReport();
                 cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country");
+                cityTemp.Country = rset.getString("country.Name");
                 cityTemp.district = rset.getString("district");
                 cityTemp.population = rset.getInt("population");
 

@@ -17,6 +17,7 @@ public class PopulationOfCountriesIntegrationTests
     static void init()
     {
         countries = new PopulationOfCountries();
+        app = new App();
         app.connect("localhost:33060", 30000);
 
     }

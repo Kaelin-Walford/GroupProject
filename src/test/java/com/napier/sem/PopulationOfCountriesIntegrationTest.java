@@ -2,9 +2,11 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,7 +25,9 @@ public class PopulationOfCountriesIntegrationTest
 
     }
 
-
+    /**
+     * Tests for getCountry
+     */
     @Test
     void testGetCountry()
     {
@@ -48,6 +52,10 @@ public class PopulationOfCountriesIntegrationTest
         ArrayList<CountryReport> rep = countries.getCountry(cons);
         countries.displayCountry(rep);
     }
+
+    /**
+     * Tests for getCountryInContinent
+     */
 
     @Test
     void testGetCountryInContinent()
@@ -89,6 +97,10 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    /**
+     * Tests for getCountryInRegion
+     */
+
     @Test
     void testGetCountryInRegion()
     {
@@ -129,6 +141,10 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    /**
+     * Tests for getTheTopNCountries
+     */
+
     @Test
     void testGetTheTopNCountries()
     {
@@ -145,6 +161,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+
     @Test
     void testGetTheTopNCountriesWithNullConnection()
     {
@@ -152,6 +169,10 @@ public class PopulationOfCountriesIntegrationTest
         ArrayList<CountryReport> rep = countries.getTheTopNCountries(cons, 10);
         countries.displayCountry(rep);
     }
+
+    /**
+     * Tests for getTheTopNCountriesInContinent
+     */
 
     @Test
     void testGetTheTopNCountriesInContinent()
@@ -185,6 +206,10 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    /**
+     * Tests for getTheTopNCountriesInRegion
+     */
+
     @Test
     void testGetTheTopNCountriesInRegion()
     {
@@ -215,5 +240,34 @@ public class PopulationOfCountriesIntegrationTest
         Connection cons = null;
         ArrayList<CountryReport> rep = countries.getTheTopNCountriesInRegion(cons, 10, "Eastern Asia");
         countries.displayCountry(rep);
+    }
+
+    /**
+     * Tests for storeValues
+     */
+
+    @Test
+    void testStoreValues() throws SQLException {
+        ArrayList<CountryReport> country = new ArrayList<>();
+        Statement statement = app.con.createStatement();
+        ResultSet rset = statement.executeQuery("SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
+                                           + "FROM country LEFT JOIN city ON country.Capital = city.ID "
+                                           + "ORDER BY country.Population DESC");
+        countries.storeValues(country, rset);
+    }
+
+    @Test
+    void testStoreValuesNullResultSet()
+    {
+        ArrayList<CountryReport> country = new ArrayList<>();
+        ResultSet rset = null;
+        countries.storeValues(country, rset);
+    }
+
+    @Test
+    void testStoreValuesNullArray()
+    {
+        ResultSet rset = null;
+        countries.storeValues(null, rset);
     }
 }

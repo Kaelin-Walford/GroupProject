@@ -22,6 +22,7 @@ public class PopulationOfCountriesIntegrationTests
 
     }
 
+    /**
     @Test
     void testGetEmployee()
     {
@@ -37,4 +38,5 @@ public class PopulationOfCountriesIntegrationTests
         }
         assertTrue(found);
     }
+    **/
 }

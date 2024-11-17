@@ -16,9 +16,9 @@ public class PopulationOfCountriesIntegrationTests
     @BeforeAll
     static void init()
     {
-        countries = new PopulationOfCountries();
         app = new App();
         app.connect("localhost:33060", 30000);
+        countries = new PopulationOfCountries();
 
     }
 
@@ -29,7 +29,7 @@ public class PopulationOfCountriesIntegrationTests
         ArrayList<CountryReport> rep = countries.getCountry(app.con);
         for(CountryReport cr : rep)
         {
-            if("JPN".equals(cr.Code) && "Japan".equals(cr.Name) && "Asia".equals(cr.Continent) && "Easter Asia".equals(cr.Region) && 126714000 == cr.Population && "Tokyo".equals(cr.Capital))
+            if("JPN".equals(cr.Code) && "Japan".equals(cr.Name) && "Asia".equals(cr.Continent) && "Eastern Asia".equals(cr.Region) && 126714000 == cr.Population && "Tokyo".equals(cr.Capital))
             {
                 found = true;
                 break;

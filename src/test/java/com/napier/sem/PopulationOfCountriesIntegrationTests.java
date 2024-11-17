@@ -25,15 +25,16 @@ public class PopulationOfCountriesIntegrationTests
     @Test
     void testGetEmployee()
     {
+        boolean found = false;
         ArrayList<CountryReport> rep = countries.getCountry(app.con);
         for(CountryReport cr : rep)
         {
-            assertEquals(cr.Code, "JPN");
-            assertEquals(cr.Name, "Japan");
-            assertEquals(cr.Continent, "Asia");
-            assertEquals(cr.Region, "Eastern Asia");
-            assertEquals(cr.Population, 126714000);
-            assertEquals(cr.Capital, "Tokyo");
+            if("JPN".equals(cr.Code) && "Japan".equals(cr.Name) && "Asia".equals(cr.Continent) && "Easter Asia".equals(cr.Region) && 126714000 == cr.Population && "Tokyo".equals(cr.Capital))
+            {
+                found = true;
+                break;
+            }
         }
+        assertTrue(found);
     }
 }

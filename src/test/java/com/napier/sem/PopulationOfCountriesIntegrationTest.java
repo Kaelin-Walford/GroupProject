@@ -22,12 +22,12 @@ public class PopulationOfCountriesIntegrationTest
         app = new App();
         app.connect("localhost:33060", 30000);
         countries = new PopulationOfCountries();
-
     }
 
     /**
      * Tests for getCountry
      */
+    //Test normal
     @Test
     void testGetCountry()
     {
@@ -45,6 +45,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //Test Null
     @Test
     void testGetCountryNull()
     {
@@ -57,6 +58,7 @@ public class PopulationOfCountriesIntegrationTest
      * Tests for getCountryInContinent
      */
 
+    //test normal with continent asia
     @Test
     void testGetCountryInContinent()
     {
@@ -67,6 +69,8 @@ public class PopulationOfCountriesIntegrationTest
         }
         countries.displayCountry(rep);
     }
+
+    //Test with invalid continent
     @Test
     void testGetCountryInContinentWithInvalidContinent()
     {
@@ -78,6 +82,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //Test with null continent
     @Test
     void testGetCountryInContinentWithNull()
     {
@@ -89,11 +94,13 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //Test with null connection
     @Test
     void testGetCountryInContinentWithNullConnection()
     {
         Connection cons = null;
         ArrayList<CountryReport> rep = countries.getCountriesInContinent(cons, "Asia");
+        assertEquals(rep, null);
         countries.displayCountry(rep);
     }
 
@@ -101,6 +108,7 @@ public class PopulationOfCountriesIntegrationTest
      * Tests for getCountryInRegion
      */
 
+    //Test normal with eastern asia as continent
     @Test
     void testGetCountryInRegion()
     {
@@ -111,8 +119,10 @@ public class PopulationOfCountriesIntegrationTest
         }
         countries.displayCountry(rep);
     }
+
+    //test with invalid region
     @Test
-    void testGetCountryInRegionWithInvalidContinent()
+    void testGetCountryInRegionWithInvalidRegion()
     {
         ArrayList<CountryReport> rep = countries.getCountriesInRegion(app.con,"invalid");
         for(CountryReport cr : rep)
@@ -122,6 +132,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //test with null region
     @Test
     void testGetCountryInRegionWithNull()
     {
@@ -133,6 +144,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //test with null connection
     @Test
     void testGetCountryInRegionWithNullConnection()
     {
@@ -145,6 +157,7 @@ public class PopulationOfCountriesIntegrationTest
      * Tests for getTheTopNCountries
      */
 
+    //Test for normal with n as 10
     @Test
     void testGetTheTopNCountries()
     {
@@ -153,6 +166,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //Test with n as 0
     @Test
     void testGetTheTopNCountriesWith0()
     {
@@ -161,12 +175,13 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
-
+    //Test with null connection
     @Test
     void testGetTheTopNCountriesWithNullConnection()
     {
         Connection cons = null;
         ArrayList<CountryReport> rep = countries.getTheTopNCountries(cons, 10);
+        assertEquals(rep, null);
         countries.displayCountry(rep);
     }
 
@@ -174,6 +189,7 @@ public class PopulationOfCountriesIntegrationTest
      * Tests for getTheTopNCountriesInContinent
      */
 
+    //test with n as 10 and continent asia
     @Test
     void testGetTheTopNCountriesInContinent()
     {
@@ -186,6 +202,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //test with n as 0 and continent asia
     @Test
     void testGetTheTopNCountriesInContinentWith0()
     {
@@ -198,6 +215,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //test with n as null and continent asia
     @Test
     void testGetTheTopNCountriesInContinentWithNullConnection()
     {
@@ -210,6 +228,7 @@ public class PopulationOfCountriesIntegrationTest
      * Tests for getTheTopNCountriesInRegion
      */
 
+    //test with n as 10 and region as eastern asia
     @Test
     void testGetTheTopNCountriesInRegion()
     {
@@ -222,6 +241,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //test with n as 0 and region as eastern asia
     @Test
     void testGetTheTopNCountriesInRegiontWith0()
     {
@@ -234,6 +254,7 @@ public class PopulationOfCountriesIntegrationTest
         countries.displayCountry(rep);
     }
 
+    //test with n as null and region as eastern asia
     @Test
     void testGetTheTopNCountriesInRegionWithNullConnection()
     {
@@ -246,6 +267,7 @@ public class PopulationOfCountriesIntegrationTest
      * Tests for storeValues
      */
 
+    //Test for normal
     @Test
     void testStoreValues() throws SQLException {
         ArrayList<CountryReport> country = new ArrayList<>();
@@ -254,20 +276,28 @@ public class PopulationOfCountriesIntegrationTest
                                            + "FROM country LEFT JOIN city ON country.Capital = city.ID "
                                            + "ORDER BY country.Population DESC");
         countries.storeValues(country, rset);
+        assertNotNull(country);
     }
 
+    //Test for null result set
     @Test
     void testStoreValuesNullResultSet()
     {
         ArrayList<CountryReport> country = new ArrayList<>();
         ResultSet rset = null;
         countries.storeValues(country, rset);
+        assertEquals(country.size(), 0);
     }
 
+    //Test for null array
     @Test
-    void testStoreValuesNullArray()
-    {
-        ResultSet rset = null;
-        countries.storeValues(null, rset);
+    void testStoreValuesNullArray() throws SQLException {
+        ArrayList<CountryReport> country = null;
+        Statement statement = app.con.createStatement();
+        ResultSet rset = statement.executeQuery("SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
+                + "FROM country LEFT JOIN city ON country.Capital = city.ID "
+                + "ORDER BY country.Population DESC");
+        countries.storeValues(country, rset);
+        assertNull(country);
     }
 }

@@ -39,7 +39,7 @@ jobs:
           docker run --name world -dp 33060:3306 database
           mvn -Dtest=com.napier.sem.PopulationOfCountriesIntegrationTest test
           docker stop world
-          docker rn world
+          docker rm world
           docker image rm database
 
   build:

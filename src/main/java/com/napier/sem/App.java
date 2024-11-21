@@ -78,9 +78,14 @@ public class App
             populationOfCities.displayCities(city);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
+
+            System.out.println("City continent");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
             //report for all the cities in a continent
             String continent = "Europe";
-            city = populationOfCities.getCitiesInContinent(a.con, continent);
+            int N = 10;
+            city = populationOfCities.getCitiesInContinent(a.con, continent,N);
             populationOfCities.displayCities(city);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
@@ -90,6 +95,14 @@ public class App
             city = populationOfCities.getCitiesInRegion(a.con, cityregion);
             populationOfCities.displayCities(city);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            System.out.println("City country");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            String countryName = "Brazil";
+            city = populationOfCities.getCitiesInCountry(a.con, countryName);
+            populationOfCities.displayCities(city);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
         }
 
         {

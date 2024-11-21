@@ -2,11 +2,9 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class PopulationOfCountriesTest
 {
@@ -20,12 +18,14 @@ public class PopulationOfCountriesTest
 
     //DisplayCountries Tests
 
+    //Test with null value
     @Test
     void displayCountriesTestNull ()
     {
         app.displayCountry(null);
     }
 
+    //Test with empty arraylist
     @Test
     void displayCountriesTestEmpty ()
     {
@@ -33,6 +33,7 @@ public class PopulationOfCountriesTest
         app.displayCountry(countryReports);
     }
 
+    //Test contains null
     @Test
     void displayCountriesTestContainsNull ()
     {
@@ -41,6 +42,7 @@ public class PopulationOfCountriesTest
         app.displayCountry(countryReports);
     }
 
+    //Test normal
     @Test
     void displayCountries ()
     {

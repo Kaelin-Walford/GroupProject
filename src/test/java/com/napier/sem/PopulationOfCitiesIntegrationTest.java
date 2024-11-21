@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PopulationOfCitiesIntergationTest {
+public class PopulationOfCitiesIntegrationTest {
     static PopulationOfCities cities;
     static App app;
 

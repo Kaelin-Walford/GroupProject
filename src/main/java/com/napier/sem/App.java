@@ -68,7 +68,58 @@ public class App
         {
             //Creating an object of PopulationOfCities and running the main function
             PopulationOfCities populationOfCities = new PopulationOfCities();
-            populationOfCities.main(args, a);
+
+            //Print City header
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City Reports World");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            ArrayList<CityReport> city = populationOfCities.getCitiesInWorld(a.con);
+            populationOfCities.displayCities(city);
+
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City Reports World TOP N");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            int N = 10;
+            city = populationOfCities.getCitiesInWorldTOPN(a.con,N);
+            populationOfCities.displayCities(city);
+
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City continent");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report for all the cities in a continent
+            String continent = "Europe";
+            city = populationOfCities.getCitiesIn(a.con, continent);
+            populationOfCities.displayCities(city);
+
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City continent top N");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report for all the cities in a continent
+            String continentN = "Europe";
+            N = 10;
+            city = populationOfCities.getCitiesInContinent(a.con, continentN,N);
+            populationOfCities.displayCities(city);
+
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City Region");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            String cityregion = "South America";
+            city = populationOfCities.getCitiesInRegion(a.con, cityregion);
+            populationOfCities.displayCities(city);
+
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City country");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            String countryName = "Brazil";
+            city = populationOfCities.getCitiesInCountry(a.con, countryName);
+            populationOfCities.displayCities(city);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
         {

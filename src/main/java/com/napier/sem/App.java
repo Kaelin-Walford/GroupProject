@@ -21,7 +21,7 @@ public class App
             // Connect to database
             a.connect(args[0], Integer.parseInt(args[1]));
         }
-
+        //test change
         {
             //Creating an object of PopulationOfCountries and running the functions
             PopulationOfCountries populationOfCountries = new PopulationOfCountries();

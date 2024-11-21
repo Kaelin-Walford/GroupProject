@@ -210,6 +210,10 @@ public class App
                 System.out.println("Error closing connection to database");
             }
         }
+        else
+        {
+            System.out.print("Connection is null");
+        }
     }
 
 

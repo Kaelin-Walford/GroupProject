@@ -78,6 +78,12 @@ public class App
             populationOfCities.displayCities(city);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
+            System.out.println("City Region");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            String cityregion = "South America";
+            city = populationOfCities.getCitiesInRegion(a.con, cityregion);
+            populationOfCities.displayCities(city);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
         {

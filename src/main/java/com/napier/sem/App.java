@@ -72,13 +72,17 @@ public class App
         {
             //Creating an object of PopulationOfCities and running the main function
             PopulationOfContinents populationOfContinents = new PopulationOfContinents();
-            populationOfContinents.main(args, a);
+
         }
 
         {
             //Creating an object of PopulationOfPeople and running the main function
             PopulationOfPeople populationOfPeople = new PopulationOfPeople();
-            populationOfPeople.main(args, a);
+            WorldPopReport popReport = populationOfPeople.getPop(a.con);
+            populationOfPeople.displayPop(popReport);
+
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
         }
 
         {

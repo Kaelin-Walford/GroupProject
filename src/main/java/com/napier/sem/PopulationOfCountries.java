@@ -48,6 +48,7 @@ public class PopulationOfCountries
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
+
             //Create an arraylist to store all the countries in the world
             ArrayList<CountryReport> country = new ArrayList<>();
 

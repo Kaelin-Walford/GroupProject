@@ -18,6 +18,7 @@ jobs:
       - name: Unit Tests
         run: |
           mvn -Dtest=com.napier.sem.PopulationOfCountriesTest test
+          mvn -Dtest=com.napier.sem.PopulationOfCitiesTest test
           mvn -Dtest=com.napier.sem.PopulationOfCapitalCitiesTest test
   
   IntegrationTests:
@@ -39,6 +40,7 @@ jobs:
           docker run --name world -dp 33060:3306 database
           mvn -Dtest=com.napier.sem.PopulationOfCountriesIntegrationTest test
           mvn -Dtest=com.napier.sem.PopulationOfCapitalCitiesIntegrationTest test
+          mvn -Dtest=com.napier.sem.PopulationOfCitiesIntegrationTest test
           mvn -Dtest=com.napier.sem.AppIntegrationTest test
           docker stop world
           docker rm world

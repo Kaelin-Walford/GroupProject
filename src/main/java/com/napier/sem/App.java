@@ -13,8 +13,14 @@ public class App
         // Create new Application
         App a = new App();
 
-        // Connect to database
-        a.connect();
+        if(args.length < 1){
+            // Connect to database
+            a.connect("localhost:33060", 10000);
+        }
+        else{
+            // Connect to database
+            a.connect(args[0], Integer.parseInt(args[1]));
+        }
 
         {
             //Creating an object of PopulationOfCountries and running the functions
@@ -162,7 +168,7 @@ public class App
      * Connect to the MySQL database.
      */
 
-    public void connect()
+    public void connect(String location, int delay)
     {
         try
         {
@@ -177,19 +183,21 @@ public class App
 
         // Connection to the database
         //Connection con = null;
-        int retries = 100;
+        int retries = 10;
+        boolean shouldWait = false;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
             try
             {
-                // Wait a bit for db to start
-                Thread.sleep(3000);
+                if (shouldWait){
+                    // Wait a bit for db to start
+                    Thread.sleep(delay);
+                }
+
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(10000);
                 // Exit for loop
                 break;
             }

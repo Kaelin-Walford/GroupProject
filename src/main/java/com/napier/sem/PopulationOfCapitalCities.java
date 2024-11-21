@@ -53,19 +53,9 @@ public class PopulationOfCapitalCities
             //Create an arraylist to store all the capital cities in the world
             ArrayList<CapitalCityReport> capitalCities = new ArrayList<>();
 
-            //loop through all the capital cities
-            while (rset.next())
-            {
-                //create a variable capitalCity to store an individual capital city
-                CapitalCityReport capitalCity = new CapitalCityReport();
-                capitalCity.Name = rset.getString("Name");
-                capitalCity.Country = rset.getString("country.Name");
-                capitalCity.Population = rset.getInt("Population");
+            storeValues(capitalCities, rset);
 
-                //add the current capital city to the arraylist
-                capitalCities.add(capitalCity);
-            }
-            //returns the arraylist of countries
+            //returns the arraylist of capital cities
             return capitalCities;
         }
         catch (Exception e)
@@ -96,19 +86,9 @@ public class PopulationOfCapitalCities
             //Create an arraylist to store all the capital cities in a continent
             ArrayList<CapitalCityReport> capitalCities = new ArrayList<>();
 
-            //loop through all the capital cities
-            while (rset.next())
-            {
-                //create a variable capitalCity to store an individual capital city
-                CapitalCityReport capitalCity = new CapitalCityReport();
-                capitalCity.Name = rset.getString("Name");
-                capitalCity.Country = rset.getString("country.Name");
-                capitalCity.Population = rset.getInt("Population");
+            storeValues(capitalCities, rset);
 
-                //add the current capital city to the arraylist
-                capitalCities.add(capitalCity);
-            }
-            //returns the arraylist of countries
+            //returns the arraylist of capital cities
             return capitalCities;
         }
         catch (Exception e)
@@ -139,19 +119,9 @@ public class PopulationOfCapitalCities
             //Create an arraylist to store all the capital cities in a region
             ArrayList<CapitalCityReport> capitalCities = new ArrayList<>();
 
-            //loop through all the capital cities
-            while (rset.next())
-            {
-                //create a variable capitalCity to store an individual capital city
-                CapitalCityReport capitalCity = new CapitalCityReport();
-                capitalCity.Name = rset.getString("Name");
-                capitalCity.Country = rset.getString("country.Name");
-                capitalCity.Population = rset.getInt("Population");
+            storeValues(capitalCities, rset);
 
-                //add the current capital city to the arraylist
-                capitalCities.add(capitalCity);
-            }
-            //returns the arraylist of countries
+            //returns the arraylist of capital cities
             return capitalCities;
         }
         catch (Exception e)
@@ -182,19 +152,9 @@ public class PopulationOfCapitalCities
             //Create an arraylist to store the top N capital cities in the world
             ArrayList<CapitalCityReport> capitalCities = new ArrayList<>();
 
-            //loop through all the capital cities
-            while (rset.next())
-            {
-                //create a variable capitalCity to store an individual capital city
-                CapitalCityReport capitalCity = new CapitalCityReport();
-                capitalCity.Name = rset.getString("Name");
-                capitalCity.Country = rset.getString("country.Name");
-                capitalCity.Population = rset.getInt("Population");
+            storeValues(capitalCities, rset);
 
-                //add the current capital city to the arraylist
-                capitalCities.add(capitalCity);
-            }
-            //returns the arraylist of countries
+            //returns the arraylist of capital cities
             return capitalCities;
         }
         catch (Exception e)
@@ -226,19 +186,9 @@ public class PopulationOfCapitalCities
             //Create an arraylist to store the top N capital cities in a continent
             ArrayList<CapitalCityReport> capitalCities = new ArrayList<>();
 
-            //loop through all the capital cities
-            while (rset.next())
-            {
-                //create a variable capitalCity to store an individual capital city
-                CapitalCityReport capitalCity = new CapitalCityReport();
-                capitalCity.Name = rset.getString("Name");
-                capitalCity.Country = rset.getString("country.Name");
-                capitalCity.Population = rset.getInt("Population");
+            storeValues(capitalCities, rset);
 
-                //add the current capital city to the arraylist
-                capitalCities.add(capitalCity);
-            }
-            //returns the arraylist of countries
+            //returns the arraylist of capital cities
             return capitalCities;
         }
         catch (Exception e)
@@ -270,19 +220,9 @@ public class PopulationOfCapitalCities
             //Create an arraylist to store the top N capital cities in a region
             ArrayList<CapitalCityReport> capitalCities = new ArrayList<>();
 
-            //loop through all the capital cities
-            while (rset.next())
-            {
-                //create a variable capitalCity to store an individual capital city
-                CapitalCityReport capitalCity = new CapitalCityReport();
-                capitalCity.Name = rset.getString("Name");
-                capitalCity.Country = rset.getString("country.Name");
-                capitalCity.Population = rset.getInt("Population");
+            storeValues(capitalCities, rset);
 
-                //add the current capital city to the arraylist
-                capitalCities.add(capitalCity);
-            }
-            //returns the arraylist of countries
+            //returns the arraylist of capital cities
             return capitalCities;
         }
         catch (Exception e)
@@ -292,5 +232,37 @@ public class PopulationOfCapitalCities
             System.out.println("Failed to get the top N capital city details in the selected region");
             return null;
         }
+    }
+
+    public ArrayList<CapitalCityReport> storeValues(ArrayList<CapitalCityReport> capitalCities, ResultSet rset)
+    {
+        if(rset != null)
+        {
+            try
+            {
+                //loop through all the capital cities
+                while (rset.next())
+                {
+                    //create a variable capitalCity to store an individual capital city
+                    CapitalCityReport capitalCity = new CapitalCityReport();
+                    capitalCity.Name = rset.getString("Name");
+                    capitalCity.Country = rset.getString("country.Name");
+                    capitalCity.Population = rset.getInt("Population");
+
+                    //add the current capital city to the arraylist
+                    capitalCities.add(capitalCity);
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+        }
+        else
+        {
+            System.out.println("result set empty");
+        }
+        //returns the arraylist of capital cities
+        return capitalCities;
     }
 }

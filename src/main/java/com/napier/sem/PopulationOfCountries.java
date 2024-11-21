@@ -57,21 +57,8 @@ public class PopulationOfCountries
             //Create an arraylist to store all the countries in the world
             ArrayList<CountryReport> country = new ArrayList<>();
 
-            //loop through all the countries
-            while (rset.next())
-            {
-                //create a variable countryTemp to store an individual country
-                CountryReport countryTemp = new CountryReport();
-                countryTemp.Code = rset.getString("code");
-                countryTemp.Name = rset.getString("name");
-                countryTemp.Continent = rset.getString("continent");
-                countryTemp.Region = rset.getString("region");
-                countryTemp.Population = rset.getInt("population");
-                countryTemp.Capital = rset.getString("city.Name");
+            storeValues(country, rset);
 
-                //add the current country to the arraylist
-                country.add(countryTemp);
-            }
             //returns the arraylist of countries
             return country;
         }
@@ -103,21 +90,8 @@ public class PopulationOfCountries
             //Create an arraylist to store all the countries in the continent
             ArrayList<CountryReport> country = new ArrayList<>();
 
-            //loop through all the countries
-            while (rset.next())
-            {
-                //create a variable countryTemp to store an individual country
-                CountryReport countryTemp = new CountryReport();
-                countryTemp.Code = rset.getString("code");
-                countryTemp.Name = rset.getString("name");
-                countryTemp.Continent = rset.getString("continent");
-                countryTemp.Region = rset.getString("region");
-                countryTemp.Population = rset.getInt("population");
-                countryTemp.Capital = rset.getString("city.Name");
+            storeValues(country, rset);
 
-                //add the current country to the arraylist
-                country.add(countryTemp);
-            }
             //returns the arraylist of countries
             return country;
         }
@@ -149,21 +123,8 @@ public class PopulationOfCountries
             //Create an arraylist to store all the countries in the region
             ArrayList<CountryReport> country = new ArrayList<>();
 
-            //loop through all the countries
-            while (rset.next())
-            {
-                //create a variable countryTemp to store an individual country
-                CountryReport countryTemp = new CountryReport();
-                countryTemp.Code = rset.getString("code");
-                countryTemp.Name = rset.getString("name");
-                countryTemp.Continent = rset.getString("continent");
-                countryTemp.Region = rset.getString("region");
-                countryTemp.Population = rset.getInt("population");
-                countryTemp.Capital = rset.getString("city.Name");
+            storeValues(country, rset);
 
-                //add the current country to the arraylist
-                country.add(countryTemp);
-            }
             //returns the arraylist of countries
             return country;
         }
@@ -195,21 +156,8 @@ public class PopulationOfCountries
             //Create an arraylist to store the top N countries in the world
             ArrayList<CountryReport> country = new ArrayList<>();
 
-            //loop through all the countries
-            while (rset.next())
-            {
-                //create a variable countryTemp to store an individual country
-                CountryReport countryTemp = new CountryReport();
-                countryTemp.Code = rset.getString("code");
-                countryTemp.Name = rset.getString("name");
-                countryTemp.Continent = rset.getString("continent");
-                countryTemp.Region = rset.getString("region");
-                countryTemp.Population = rset.getInt("population");
-                countryTemp.Capital = rset.getString("city.Name");
+           storeValues(country, rset);
 
-                //add the current country to the arraylist
-                country.add(countryTemp);
-            }
             //returns the arraylist of countries
             return country;
         }
@@ -242,21 +190,8 @@ public class PopulationOfCountries
             //Create an arraylist to store the top N countries in a continent
             ArrayList<CountryReport> country = new ArrayList<>();
 
-            //loop through all the countries
-            while (rset.next())
-            {
-                //create a variable countryTemp to store an individual country
-                CountryReport countryTemp = new CountryReport();
-                countryTemp.Code = rset.getString("code");
-                countryTemp.Name = rset.getString("name");
-                countryTemp.Continent = rset.getString("continent");
-                countryTemp.Region = rset.getString("region");
-                countryTemp.Population = rset.getInt("population");
-                countryTemp.Capital = rset.getString("city.Name");
+            storeValues(country, rset);
 
-                //add the current country to the arraylist
-                country.add(countryTemp);
-            }
             //returns the arraylist of countries
             return country;
         }
@@ -289,21 +224,8 @@ public class PopulationOfCountries
             //Create an arraylist to store the top N countries in a region
             ArrayList<CountryReport> country = new ArrayList<>();
 
-            //loop through all the countries
-            while (rset.next())
-            {
-                //create a variable countryTemp to store an individual country
-                CountryReport countryTemp = new CountryReport();
-                countryTemp.Code = rset.getString("code");
-                countryTemp.Name = rset.getString("name");
-                countryTemp.Continent = rset.getString("continent");
-                countryTemp.Region = rset.getString("region");
-                countryTemp.Population = rset.getInt("population");
-                countryTemp.Capital = rset.getString("city.Name");
+            storeValues(country, rset);
 
-                //add the current country to the arraylist
-                country.add(countryTemp);
-            }
             //returns the arraylist of countries
             return country;
         }
@@ -314,5 +236,41 @@ public class PopulationOfCountries
             System.out.println("Failed to get country details");
             return null;
         }
+    }
+
+    public ArrayList<CountryReport> storeValues(ArrayList<CountryReport> country, ResultSet rset)
+    {
+        if(rset != null)
+        {
+            try
+            {
+                //loop through all the countries
+                while (rset.next())
+                {
+                    //create a variable countryTemp to store an individual country
+                    CountryReport countryTemp = new CountryReport();
+                    countryTemp.Code = rset.getString("code");
+                    countryTemp.Name = rset.getString("name");
+                    countryTemp.Continent = rset.getString("continent");
+                    countryTemp.Region = rset.getString("region");
+                    countryTemp.Population = rset.getInt("population");
+                    countryTemp.Capital = rset.getString("city.Name");
+
+                    //add the current country to the arraylist
+                    country.add(countryTemp);
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
+        }
+        else
+        {
+            System.out.println("result set empty");
+        }
+
+        return country;
     }
 }

@@ -13,15 +13,23 @@ public class App
         // Create new Application
         App a = new App();
 
-        // Connect to database
-        a.connect();
+        if(args.length < 1){
+            // Connect to database
+            a.connect("localhost:33060", 10000);
+        }
+        else{
+            // Connect to database
+            a.connect(args[0], Integer.parseInt(args[1]));
+        }
 
         {
             //Creating an object of PopulationOfCountries and running the functions
             PopulationOfCountries populationOfCountries = new PopulationOfCountries();
 
-            //create bufferreader to get an input from the console
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            //Print Country header
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("Country Reports");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //report for all the countries in the world
             ArrayList<CountryReport> country = populationOfCountries.getCountry(a.con);
@@ -66,7 +74,44 @@ public class App
         {
             //Creating an object of PopulationOfCapitalCities and running the main function
             PopulationOfCapitalCities populationOfCapitalCities = new PopulationOfCapitalCities();
-            populationOfCapitalCities.main(args, a);
+
+            //Print capital cities header
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("Capital Cities Report");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //report for all the capital cities in the world
+            ArrayList<CapitalCityReport> capitalCities = populationOfCapitalCities.getCapitalCities(a.con);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for all the capital cities in a continent
+            String continent = "Europe";
+            capitalCities = populationOfCapitalCities.getCapitalCitiesInContinent(a.con, continent);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for all the capital cities in a region
+            String region = "Southern Europe";
+            capitalCities = populationOfCapitalCities.getCapitalCitiesInRegion(a.con, region);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for the top N capital cities in the world
+            int N = 5;
+            capitalCities = populationOfCapitalCities.getTopNCapitalCities(a.con, N);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for the top N capital cities in a continent
+            capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInContinent(a.con, N, continent);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            //Report for the top N capital cities in a region
+            capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInRegion(a.con, N, region);
+            populationOfCapitalCities.displayCapitalCities(capitalCities);
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
 
         {
@@ -112,7 +157,7 @@ public class App
      * Connect to the MySQL database.
      */
 
-    public void connect()
+    public void connect(String location, int delay)
     {
         try
         {
@@ -127,19 +172,21 @@ public class App
 
         // Connection to the database
         //Connection con = null;
-        int retries = 100;
+        int retries = 10;
+        boolean shouldWait = false;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
             try
             {
-                // Wait a bit for db to start
-                Thread.sleep(3000);
+                if (shouldWait){
+                    // Wait a bit for db to start
+                    Thread.sleep(delay);
+                }
+
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(10000);
                 // Exit for loop
                 break;
             }
@@ -172,6 +219,10 @@ public class App
             {
                 System.out.println("Error closing connection to database");
             }
+        }
+        else
+        {
+            System.out.print("Connection is null");
         }
     }
 

@@ -15,7 +15,7 @@ public class App
 
         if(args.length < 1){
             // Connect to database
-            a.connect("localhost:33060", 10000);
+            a.connect("localhost:33060", 90000);
         }
         else{
             // Connect to database

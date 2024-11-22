@@ -18,7 +18,7 @@ public class PopulationOfCitiesIntegrationTest {
     @BeforeAll
     static void init() {
         app = new App();
-        app.connect("localhost:33060", 30000);
+        app.connect("localhost:33060", 90000);
         cities = new PopulationOfCities();
     }
 

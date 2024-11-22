@@ -17,8 +17,9 @@ public class App
             // Connect to database
             a.connect("localhost:33060", 90000);
         }
+        // Connect to database
         else{
-            // Connect to database
+
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 

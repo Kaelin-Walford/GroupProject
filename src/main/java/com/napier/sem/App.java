@@ -163,7 +163,7 @@ public class App
         // Connection to the database
         //Connection con = null;
         int retries = 10;
-        boolean shouldWait = false;
+        boolean shouldWait = true;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");

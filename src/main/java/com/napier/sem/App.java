@@ -119,7 +119,16 @@ public class App
             String countryName = "Brazil";
             city = populationOfCities.getCitiesInCountry(a.con, countryName);
             populationOfCities.displayCities(city);
+
+
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City district");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            String district = "Zuid-Holland";
+            city = populationOfCities.getCitiesInDist(a.con, district);
+            populationOfCities.displayCities(city);
+
 
         }
 

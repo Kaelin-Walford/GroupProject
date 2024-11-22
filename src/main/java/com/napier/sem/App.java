@@ -228,6 +228,7 @@ public class App
         boolean shouldWait = true;
         for (int i = 0; i < retries; ++i)
         {
+
             System.out.println("Connecting to database...");
             try
             {

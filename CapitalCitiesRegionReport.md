@@ -1,5 +1,5 @@
 | Name | Country | Population |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- |
 | Madrid | Spain | 2879052 |
 | Roma | Italy | 2643581 |
 | Beograd | Yugoslavia | 1204000 |

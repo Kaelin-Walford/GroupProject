@@ -147,6 +147,8 @@ public class App
      * Connect to the MySQL database.
      */
 
+    public int retries = 10;
+
     public void connect(String location, int delay)
     {
         try
@@ -162,7 +164,7 @@ public class App
 
         // Connection to the database
         //Connection con = null;
-        int retries = 10;
+
         boolean shouldWait = false;
         for (int i = 0; i < retries; ++i)
         {
@@ -184,6 +186,7 @@ public class App
             {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
+                shouldWait = true;
             }
             catch (InterruptedException ie)
             {

@@ -38,6 +38,7 @@ public class AppIntegrationTest
     void testNullConnection()
     {
         app = new App();
+        app.retries = 1;
         app.connect(null, 30000);
         assertNull(app.con);
     }
@@ -55,6 +56,7 @@ public class AppIntegrationTest
     void  testNullDisconnect()
     {
         app = new App();
+        app.retries = 1;
         app.con = null;
         ByteArrayOutputStream test = new ByteArrayOutputStream();
         System.setOut(new PrintStream(test));

@@ -5,6 +5,7 @@ package com.napier.sem;
  */
 public class CityReport
 {
+
     /**
      *  Cities Name
      */
@@ -13,7 +14,7 @@ public class CityReport
     /**
      * The Country the city is in
      */
-    public String country;
+    public String Country;
 
     /**
      * District the city is in

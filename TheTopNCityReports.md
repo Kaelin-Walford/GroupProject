@@ -1,12 +1,12 @@
 | Name | Country | District | Population |
 | --- | --- | --- | --- |
-| Mumbai (Bombay) | India | null | 10500000 |
-| Seoul | South Korea | null | 9981619 |
-| São Paulo | Brazil | null | 9968485 |
-| Shanghai | China | null | 9696300 |
-| Jakarta | Indonesia | null | 9604900 |
-| Karachi | Pakistan | null | 9269265 |
-| Istanbul | Turkey | null | 8787958 |
-| Ciudad de México | Mexico | null | 8591309 |
-| Moscow | Russian Federation | null | 8389200 |
-| New York | United States | null | 8008278 |
+| Mumbai (Bombay) | India | Maharashtra | 10500000 |
+| Seoul | South Korea | Seoul | 9981619 |
+| São Paulo | Brazil | São Paulo | 9968485 |
+| Shanghai | China | Shanghai | 9696300 |
+| Jakarta | Indonesia | Jakarta Raya | 9604900 |
+| Karachi | Pakistan | Sindh | 9269265 |
+| Istanbul | Turkey | Istanbul | 8787958 |
+| Ciudad de México | Mexico | Distrito Federal | 8591309 |
+| Moscow | Russian Federation | Moscow (City) | 8389200 |
+| New York | United States | New York | 8008278 |

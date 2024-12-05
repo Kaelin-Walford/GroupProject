@@ -1,8 +1,8 @@
 | Name | Country | District | Population |
 | --- | --- | --- | --- |
-| Rotterdam | Netherlands | null | 593321 |
-| Haag | Netherlands | null | 440900 |
-| Dordrecht | Netherlands | null | 119811 |
-| Leiden | Netherlands | null | 117196 |
-| Zoetermeer | Netherlands | null | 110214 |
-| Delft | Netherlands | null | 95268 |
+| Rotterdam | Netherlands | Zuid-Holland | 593321 |
+| Haag | Netherlands | Zuid-Holland | 440900 |
+| Dordrecht | Netherlands | Zuid-Holland | 119811 |
+| Leiden | Netherlands | Zuid-Holland | 117196 |
+| Zoetermeer | Netherlands | Zuid-Holland | 110214 |
+| Delft | Netherlands | Zuid-Holland | 95268 |

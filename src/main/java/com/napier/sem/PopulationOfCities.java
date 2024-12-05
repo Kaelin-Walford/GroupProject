@@ -47,9 +47,9 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a continent
             String strSelect =
-                    "SELECT city.Name,country.Name, city.district,city.Population "
-                            + "FROM city JOIN country ON country.Code = city.CountryCode "
-                            + "WHERE country.Continent = '" + continent + "'"
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
+                            + "FROM city LEFT JOIN country ON country.Code = city.CountryCode "
+                            + "WHERE country.Continent = '" + continent + "' "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -59,21 +59,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
-            //returns the arraylist of citys
             return city;
         }
         catch (Exception e)
@@ -94,9 +79,9 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a continent
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District,city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
-                            + "WHERE country.Continent = '" + continent + "'"
+                            + "WHERE country.Continent = '" + continent + "' "
                             + "ORDER BY city.Population DESC "
                             + "LIMIT " + N;
             // Execute SQL statement
@@ -107,20 +92,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }
@@ -142,8 +113,8 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in THE WORLD
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
-                            + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
+                            + "FROM city LEFT JOIN country ON country.Code = city.CountryCode "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -153,22 +124,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-
-
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("city.District");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }
@@ -191,10 +146,10 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in THE WORLD
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
+                    "SELECT city.Name AS city_name,country.Name AS country_name, city.District,city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "ORDER BY city.Population DESC "
-                            + "LIMIT "+N;
+                            + "LIMIT "+ N;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -203,20 +158,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }
@@ -239,7 +180,7 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a region
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "WHERE country.region = '" + cityregion
                             + "' ORDER BY city.Population DESC ";
@@ -251,20 +192,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }
@@ -289,7 +216,7 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in THE WORLD
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "WHERE country.name = '" + countryName
                             + "' ORDER BY city.Population DESC";
@@ -301,20 +228,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }
@@ -335,7 +248,7 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a country
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population"
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "WHERE country.name = '" + citycountry
                             + "' ORDER BY city.Population DESC "
@@ -348,19 +261,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next()) {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         } catch (Exception e) {
@@ -380,7 +280,7 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a region
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "WHERE country.region = '" + cityregion
                             + "' ORDER BY city.Population DESC "
@@ -393,20 +293,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }
@@ -428,17 +314,18 @@ public class PopulationOfCities
         {
             try
             {
-                //loop through all the capital cities
+                //loop through all the cities
                 while (rset.next())
                 {
-                    //create a variable capitalCity to store an individual capital city
-                    CityReport City = new CityReport();
-                    City.name = rset.getString("Name");
-                    City.Country = rset.getString("country.Name");
-                    City.population = rset.getInt("Population");
+                    //create a variable City to store an individual capital city
+                    CityReport cityTemp = new CityReport();
+                    cityTemp.name = rset.getString("city_name");
+                    cityTemp.Country = rset.getString("country_name");
+                    cityTemp.district = rset.getString("city.district");
+                    cityTemp.population = rset.getInt("city.population");
 
-                    //add the current capital city to the arraylist
-                    cities.add(City);
+                    //add the current city to the arraylist
+                    cities.add(cityTemp);
                 }
             }
             catch (Exception e)
@@ -450,7 +337,7 @@ public class PopulationOfCities
         {
             System.out.println("result set empty");
         }
-        //returns the arraylist of capital cities
+        //returns the arraylist of cities
         return cities;
     }
 
@@ -463,7 +350,7 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a continent
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "WHERE city.district = '" + DistrictE + "'"
                             + "ORDER BY city.Population DESC";
@@ -475,20 +362,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }
@@ -510,7 +383,7 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a district
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population "
+                    "SELECT city.Name AS city_name, country.Name AS country_name, city.District, city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "WHERE city.district = '" + citydistrict
                             + "' ORDER BY city.Population DESC "
@@ -523,20 +396,6 @@ public class PopulationOfCities
 
             storeValues(city, rset);
 
-            //loop through all the citys
-            while (rset.next())
-            {
-                //create a variable citytemp to store an individual city
-                CityReport cityTemp = new CityReport();
-                cityTemp.name = rset.getString("name");
-                cityTemp.Country = rset.getString("country.Name");
-                cityTemp.district = rset.getString("district");
-                cityTemp.population = rset.getInt("population");
-
-
-                //add the current city to the arraylist
-                city.add(cityTemp);
-            }
             //returns the arraylist of citys
             return city;
         }

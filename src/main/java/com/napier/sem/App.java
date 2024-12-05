@@ -80,6 +80,7 @@ public class App
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             ArrayList<CityReport> city = populationOfCities.getCitiesInWorld(a.con);
+            a.outputCities(city, "CityReports.md");
             populationOfCities.displayCities(city);
 
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
@@ -88,6 +89,7 @@ public class App
 
             int N = 10;
             city = populationOfCities.getCitiesInWorldTOPN(a.con,N);
+            a.outputCities(city, "TheTopNCityReports.md");
             populationOfCities.displayCities(city);
 
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
@@ -96,7 +98,8 @@ public class App
 
             //report for all the cities in a continent
             String continent = "Europe";
-            city = populationOfCities.getCitiesIn(a.con, continent);
+            city = populationOfCities.getCitiesInContinent(a.con, continent);
+            a.outputCities(city, "CityContinentReports.md");
             populationOfCities.displayCities(city);
 
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
@@ -106,7 +109,8 @@ public class App
             //report for all the cities in a continent
             String continentN = "Europe";
             N = 10;
-            city = populationOfCities.getCitiesInContinent(a.con, continentN,N);
+            city = populationOfCities.getCitiesInContinentTopN(a.con, continentN,N);
+            a.outputCities(city, "TheTopNCityContinentReports.md");
             populationOfCities.displayCities(city);
 
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
@@ -115,6 +119,15 @@ public class App
 
             String cityregion = "South America";
             city = populationOfCities.getCitiesInRegion(a.con, cityregion);
+            a.outputCities(city, "CityRegionReports.md");
+            populationOfCities.displayCities(city);
+
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City Region top N");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            city = populationOfCities.getCitiesInRegionWithN(a.con, cityregion, N);
+            a.outputCities(city, "TheTopNCityRegionReports.md");
             populationOfCities.displayCities(city);
 
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
@@ -123,8 +136,16 @@ public class App
 
             String countryName = "Brazil";
             city = populationOfCities.getCitiesInCountry(a.con, countryName);
+            a.outputCities(city, "CityCountryReports.md");
             populationOfCities.displayCities(city);
 
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City country Top N");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            city = populationOfCities.getCitiesInCountryWithN(a.con, countryName, N);
+            a.outputCities(city, "TheTopNCityCountryReports.md");
+            populationOfCities.displayCities(city);
 
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
             System.out.println("City district");
@@ -132,8 +153,16 @@ public class App
 
             String district = "Zuid-Holland";
             city = populationOfCities.getCitiesInDist(a.con, district);
+            a.outputCities(city, "CityDistrictReports.md");
             populationOfCities.displayCities(city);
 
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+            System.out.println("City district Top N");
+            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+            city = populationOfCities.getCitiesInDistrictWithN(a.con, district, N);
+            a.outputCities(city, "TheTopNCityDistrictReports.md");
+            populationOfCities.displayCities(city);
 
         }
 
@@ -344,6 +373,36 @@ public class App
             if (city == null) continue;
             sb.append("| " + city.Name + " | " +
                     city.Country + " | " + city.Population + " |\r\n");
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @param cities
+     */
+    public void outputCities(ArrayList<CityReport> cities, String filename) {
+        // Check cities is not null
+        if (cities == null) {
+            System.out.println("No cities");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        sb.append("| Name | Country | District | Population |\r\n");
+        sb.append("| --- | --- | --- | --- |\r\n");
+        // Loop over all capital cities in the list
+        for (CityReport city : cities) {
+            if (city == null) continue;
+            sb.append("| " + city.name + " | " +
+                    city.Country + " | " + city.district + " | " + city.population + " |\r\n");
         }
         try {
             new File("./reports/").mkdir();

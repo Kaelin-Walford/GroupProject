@@ -56,7 +56,7 @@ public class PopulationOfCitiesIntegrationTest {
     @Test
     void testGetCitiesInContinent() {
         boolean found = false;
-        ArrayList<CityReport> rep = cities.getCitiesIn(app.con, "Antarctica");
+        ArrayList<CityReport> rep = cities.getCitiesInContinent(app.con, "Antarctica");
         for (CityReport report : rep) {
             if ("South Georgia and the South Sandwich Islands".equals(report.Country) || "Heard Island and McDonald Islands".equals(report.Country) || "Bouvet Island".equals(report.Country) || "French Southern territories".equals(report.Country) || "Antarctica".equals(report.Country)) {
                 found = true;
@@ -72,14 +72,14 @@ public class PopulationOfCitiesIntegrationTest {
     //Test with invalid continent
     @Test
     void testGetCitiesInContinentWithInvalidContinent() {
-        ArrayList<CityReport> rep = cities.getCitiesIn(app.con, "invalid");
+        ArrayList<CityReport> rep = cities.getCitiesInContinent(app.con, "invalid");
         assertTrue(rep.isEmpty());
     }
 
     //Test with null continent
     @Test
     void testGetCitiesInContinentWithNullContinent() {
-        ArrayList<CityReport> rep = cities.getCitiesIn(app.con, null);
+        ArrayList<CityReport> rep = cities.getCitiesInContinent(app.con, null);
         assertTrue(rep.isEmpty());
     }
 
@@ -87,7 +87,7 @@ public class PopulationOfCitiesIntegrationTest {
     @Test
     void testGetCitiesInContinentWithNullConnection() {
         Connection cons = null;
-        ArrayList<CityReport> rep = cities.getCitiesIn(cons, "Antarctica");
+        ArrayList<CityReport> rep = cities.getCitiesInContinent(cons, "Antarctica");
         assertEquals(rep, null);
     }
 
@@ -169,7 +169,7 @@ public class PopulationOfCitiesIntegrationTest {
     //Test for normal with n as 2 and continent as Antarctica
     @Test
     void testGetTopNCitiesInContinent() {
-        ArrayList<CityReport> rep = cities.getCitiesInContinent(app.con, "Antarctica", 2);
+        ArrayList<CityReport> rep = cities.getCitiesInContinentTopN(app.con, "Antarctica", 2);
         assertEquals(rep.size(), 2);
         boolean found = false;
         for (CityReport report : rep) {
@@ -187,7 +187,7 @@ public class PopulationOfCitiesIntegrationTest {
     //Test n as 0 and continent as antarctica
     @Test
     void testGetTopNCitiesInContinentWith0() {
-        ArrayList<CityReport> rep = cities.getCitiesInContinent(app.con, "Antarctica", 0);
+        ArrayList<CityReport> rep = cities.getCitiesInContinentTopN(app.con, "Antarctica", 0);
         assertEquals(rep.size(), 0);
         cities.displayCities(rep);
     }
@@ -196,7 +196,7 @@ public class PopulationOfCitiesIntegrationTest {
     @Test
     void testGetTopNCitiesInContinentWithNullConnection() {
         Connection cons = null;
-        ArrayList<CityReport> rep = cities.getCitiesInContinent(cons, "Antarctica", 3);
+        ArrayList<CityReport> rep = cities.getCitiesInContinentTopN(cons, "Antarctica", 3);
         assertNull(rep);
         cities.displayCities(rep);
     }

@@ -244,7 +244,7 @@ public class App
         StringBuilder sb = new StringBuilder();
         // Print header
         sb.append("| Code | Name | Continent | Region | Population | Capital |\r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
+        sb.append("| --- | --- | --- | --- | --- | --- |\r\n");
         // Loop over all countries in the list
         for (CountryReport country : countries) {
             if (country == null) continue;
@@ -276,7 +276,7 @@ public class App
         StringBuilder sb = new StringBuilder();
         // Print header
         sb.append("| Name | Country | Population |\r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
+        sb.append("| --- | --- | --- |\r\n");
         // Loop over all capital cities in the list
         for (CapitalCityReport city : capitalCities) {
             if (city == null) continue;

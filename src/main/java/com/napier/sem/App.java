@@ -1,8 +1,6 @@
 package com.napier.sem;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -34,34 +32,40 @@ public class App
 
             //report for all the countries in the world
             ArrayList<CountryReport> country = populationOfCountries.getCountry(a.con);
+            a.outputcountries(country, "CountryReport.md");
             populationOfCountries.displayCountry(country);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //report for all the countries in a continent
             String continent = "Europe";
             country = populationOfCountries.getCountriesInContinent(a.con, continent);
+            a.outputcountries(country, "CountryContinentReport.md");
             populationOfCountries.displayCountry(country);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //report for all the countries in a region
             String region = "Southern Europe";
             country = populationOfCountries.getCountriesInRegion(a.con, region);
+            a.outputcountries(country, "CountryRegionReport.md");
             populationOfCountries.displayCountry(country);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //report on the top N countries in the world
             int N = 5;
             country = populationOfCountries.getTheTopNCountries(a.con, N);
+            a.outputcountries(country, "TheTopNCountriesReport.md");
             populationOfCountries.displayCountry(country);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //report on the top N countries in a continent
             country = populationOfCountries.getTheTopNCountriesInContinent(a.con, N, continent);
+            a.outputcountries(country, "TheTopNCountriesContinentReport.md");
             populationOfCountries.displayCountry(country);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //report on the top N countries in a region
             country = populationOfCountries.getTheTopNCountriesInRegion(a.con, N, region);
+            a.outputcountries(country, "TheTopNCountriesRegionReport.md");
             populationOfCountries.displayCountry(country);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
@@ -144,34 +148,40 @@ public class App
 
             //report for all the capital cities in the world
             ArrayList<CapitalCityReport> capitalCities = populationOfCapitalCities.getCapitalCities(a.con);
+            a.outputCapitalCities(capitalCities, "CapitalCitiesReport.md");
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //Report for all the capital cities in a continent
             String continent = "Europe";
             capitalCities = populationOfCapitalCities.getCapitalCitiesInContinent(a.con, continent);
+            a.outputCapitalCities(capitalCities, "CapitalCitiesContinentReport.md");
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //Report for all the capital cities in a region
             String region = "Southern Europe";
             capitalCities = populationOfCapitalCities.getCapitalCitiesInRegion(a.con, region);
+            a.outputCapitalCities(capitalCities, "CapitalCitiesRegionReport.md");
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //Report for the top N capital cities in the world
             int N = 5;
             capitalCities = populationOfCapitalCities.getTopNCapitalCities(a.con, N);
+            a.outputCapitalCities(capitalCities, "TheTopNCapitalCitiesReport.md");
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //Report for the top N capital cities in a continent
             capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInContinent(a.con, N, continent);
+            a.outputCapitalCities(capitalCities, "TheTopNCapitalCitiesContinentReport.md");
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
             //Report for the top N capital cities in a region
             capitalCities = populationOfCapitalCities.getTopNCapitalCitiesInRegion(a.con, N, region);
+            a.outputCapitalCities(capitalCities, "TheTopNCapitalCitiesRegionReport.md");
             populationOfCapitalCities.displayCapitalCities(capitalCities);
             System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
         }
@@ -209,6 +219,8 @@ public class App
      * Connect to the MySQL database.
      */
 
+    public int retries = 10;
+
     public void connect(String location, int delay)
     {
         try
@@ -224,8 +236,7 @@ public class App
 
         // Connection to the database
         //Connection con = null;
-        int retries = 10;
-        boolean shouldWait = true;
+        boolean shouldWait = false;
         for (int i = 0; i < retries; ++i)
         {
 
@@ -247,6 +258,7 @@ public class App
             {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
+                shouldWait = true;
             }
             catch (InterruptedException ie)
             {
@@ -276,6 +288,70 @@ public class App
         else
         {
             System.out.print("Connection is null");
+        }
+    }
+
+    /**
+     * Outputs to Markdown
+     *
+     * @param countries
+     */
+    public void outputcountries(ArrayList<CountryReport> countries, String filename) {
+        // Check countries is not null
+        if (countries == null) {
+            System.out.println("No countries");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        sb.append("| Code | Name | Continent | Region | Population | Capital |\r\n");
+        sb.append("| --- | --- | --- | --- | --- | --- |\r\n");
+        // Loop over all countries in the list
+        for (CountryReport country : countries) {
+            if (country == null) continue;
+            sb.append("| " + country.Code + " | " +
+                    country.Name + " | " + country.Continent + " | " +
+                    country.Region + " | " + country.Population + " | "
+                    + country.Capital +  " |\r\n");
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @param capitalCities
+     */
+    public void outputCapitalCities(ArrayList<CapitalCityReport> capitalCities, String filename) {
+        // Check capitalCities is not null
+        if (capitalCities == null) {
+            System.out.println("No capital cities");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        sb.append("| Name | Country | Population |\r\n");
+        sb.append("| --- | --- | --- |\r\n");
+        // Loop over all capital cities in the list
+        for (CapitalCityReport city : capitalCities) {
+            if (city == null) continue;
+            sb.append("| " + city.Name + " | " +
+                    city.Country + " | " + city.Population + " |\r\n");
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

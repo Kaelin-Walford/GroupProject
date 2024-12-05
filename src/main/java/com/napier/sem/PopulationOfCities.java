@@ -380,7 +380,7 @@ public class PopulationOfCities
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the citys in a region
             String strSelect =
-                    "SELECT city.Name,country.Name, city.District,city.Population"
+                    "SELECT city.Name,country.Name, city.District,city.Population "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
                             + "WHERE country.region = '" + cityregion
                             + "' ORDER BY city.Population DESC "

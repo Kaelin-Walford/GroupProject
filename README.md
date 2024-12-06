@@ -10,7 +10,7 @@
 * License [![LICENSE](https://img.shields.io/github/license/Kaelin-Walford/GroupProject.svg?style=flat-square)](https://github.com/Kaelin-Walford/GroupProject/blob/master/LICENSE)
 * Release [![Releases](https://img.shields.io/github/release/Kaelin-Walford/GroupProject/all.svg?style=flat-square)](https://github.com/Kaelin-Walford/GroupProject/releases)
 
-change requirements of 32 have been implemented, which is percentage
+22 requirements of 32 have been implemented, which is 68.75
 
 | ID | Name                                                                                                  | Met | Screenshot                                                                      |
 |----|-------------------------------------------------------------------------------------------------------|-----|---------------------------------------------------------------------------------|

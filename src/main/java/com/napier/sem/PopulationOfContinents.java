@@ -19,7 +19,9 @@ public class PopulationOfContinents
             for(ContinentReport continentTemp : continent){
                 System.out.println(
                                 continentTemp.Continent + " "
-                                + continentTemp.Population + " ");
+                                        + continentTemp.PopulationInMillions + " "
+                                        + continentTemp.PercentageInCities + " "
+                                        + continentTemp.PercentageOutwithCities + " ");
             }
         }
     }
@@ -33,9 +35,9 @@ public class PopulationOfContinents
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of all the continents
             String strSelect =
-                    "SELECT country.Continent, country.Population"
-                            + "FROM country"
-                            + "ORDER BY country.Population DESC";
+                    "SELECT Continent, ROUND(SUM(country.Population)/1000000,2) AS PopulationInMillions, ROUND(((SUM(city.Population)/SUM(country.Population))*100),0) AS PercentageInCities, ROUND((((SUM(country.Population) - SUM(city.Population))/SUM(country.Population))*100),0) AS PercentageOutwithCities "
+                            + "FROM country LEFT JOIN city ON country.Code = city.CountryCode "
+                            +"GROUP BY continent";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -49,7 +51,9 @@ public class PopulationOfContinents
                 //create a variable countryTemp to store an individual country
                 ContinentReport continentTemp = new ContinentReport();
                 continentTemp.Continent = rset.getString("continent");
-                continentTemp.Population = rset.getInt("population");
+                continentTemp.PopulationInMillions = rset.getInt("populationInMillions");
+                continentTemp.PercentageInCities = rset.getInt("percentageInCities");
+                continentTemp.PercentageOutwithCities = rset.getInt("percentageOutwithCities");
 
                 //add the current continent to the arraylist
                 continent.add(continentTemp);

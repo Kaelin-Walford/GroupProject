@@ -120,28 +120,50 @@ public class App
 
         }
 
-        {
-            //Creating an object of PopulationOfPeople and running the main function
-            PopulationOfPeople populationOfPeople = new PopulationOfPeople();
-            WorldPopReport popReport = populationOfPeople.getPop(a.con);
-            populationOfPeople.displayPop(popReport);
 
-            System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
-        }
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+        System.out.println("Population of World");
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
-        {
-            //Creating an object of PopulationInformation and running the main function
-            PopulationInformation populationInformation = new PopulationInformation();
-            populationInformation.main(args, a);
-        }
+        PopulationOfLocation locationPop = new PopulationOfLocation();
+        LocationPopulation population = locationPop.getPopulation(a.con);
+        locationPop.displayPop(population);
 
-        {
-            //Creating an object of LanguageInformation and running the main function
-            LanguageInformation languageInformation = new LanguageInformation();
-            languageInformation.main(args, a);
-        }
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+        System.out.println("Population of Continent");
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
 
+        population = locationPop.getPopulationContinent(a.con, "Europe");
+        locationPop.displayPop(population);
+
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+        System.out.println("Population of Region");
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+        population = locationPop.getPopulationRegion(a.con, "Southern Europe");
+        locationPop.displayPop(population);
+
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+        System.out.println("Population of country");
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+        population = locationPop.getPopulationCountry(a.con, "Spain");
+        locationPop.displayPop(population);
+
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+        System.out.println("Population of district");
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+        population = locationPop.getPopulationDistrict(a.con, "Kabol");
+        locationPop.displayPop(population);
+
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+        System.out.println("Population of city");
+        System.out.println("--------------------------------------------------------\n\n--------------------------------------------------------");
+
+        population = locationPop.getPopulationcity(a.con, "Edinburgh");
+        locationPop.displayPop(population);
 
         // Disconnect from database
         a.disconnect();

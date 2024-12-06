@@ -19,48 +19,39 @@ public class PopulationOfPeople
         if(population != null)
         {
 
-            //Outputs the population of the world
+            if(population != null)
+            {
+                System.out.println(
+                        population.Population + " "
+                                + population.PopulationInCity + " "
+                                + population.PopulationNotInCity + " ");
+            }
 
-            System.out.println(
-                    "World" + " "
-                            +   population.Population + " "
-                            +   population.PopulationInCity + " "
-                            +   population.PopulationNotInCity + " ");
-
+        }
+        else
+        {
+            System.out.println("No population found");
         }
     }
 
-    public WorldPopReport getPop(Connection con) {
+    public WorldPopReport getPop (Connection con) {
 
-        try
-        {
+        try {
+            WorldPopReport getWorld = new WorldPopReport();
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement to get the population of the world
             String strSelect =
-                    "SELECT SUM(country.Population), ROUND(((SUM(city.population)/SUM(country.Population))*100),0), ROUND(((SUM(country.Population) - SUM(city.population))/SUM(country.Population))*100),0) "
+                    "SELECT ROUND((SUM(country.Population)/1000000), 2) AS Population, ((SUM(city.Population)/SUM(country.Population))*100) AS PopulationInCity, (((SUM(country.Population) - SUM(city.Population))/SUM(country.Population))*100) AS PopulationNotInCity "
                             + "FROM country LEFT JOIN city ON country.Code = city.CountryCode ";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
 
-            //Create an arraylist to store the world
-            WorldPopReport world = new WorldPopReport();
+            storeValues(getWorld, rset);
 
-            //loop through the world
-            while (rset.next())
-            {
-                //create a variable popTemp to store the world
-                WorldPopReport worldTemp = new WorldPopReport();
-                worldTemp.Population = rset.getInt("population");
-                worldTemp.PopulationInCity = rset.getInt("populationInCity");
-                worldTemp.PopulationNotInCity = rset.getInt("populationNotInCity");
-
-                //add the population to arraylist
-                world = worldTemp;
-            }
-            //returns the arraylist of continents
-            return world;
+            //returns the arraylist
+            return getWorld;
         }
         catch (Exception e)
         {
@@ -70,4 +61,34 @@ public class PopulationOfPeople
             return null;
         }
     }
+
+    public WorldPopReport storeValues(WorldPopReport world, ResultSet rset)
+    {
+        if (rset != null)
+        {
+            try {
+                //loop through the world
+                while (rset.next()) {
+                    //create a variable worldTemp to store the world
+                    world.Population = rset.getInt("Population");
+                    world.PopulationInCity = rset.getFloat("PopulationInCity");
+                    world.PopulationNotInCity = rset.getFloat("PopulationNotInCity");
+
+                }
+
+            } catch (Exception e) {
+                //returns an error if the query failed to get the population details
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get population details");
+                return null;
+            }
+        }
+        else
+        {
+            System.out.println("result set empty");
+        }
+
+        return world;
+    }
 }
+

@@ -10,7 +10,7 @@
 * License [![LICENSE](https://img.shields.io/github/license/Kaelin-Walford/GroupProject.svg?style=flat-square)](https://github.com/Kaelin-Walford/GroupProject/blob/master/LICENSE)
 * Release [![Releases](https://img.shields.io/github/release/Kaelin-Walford/GroupProject/all.svg?style=flat-square)](https://github.com/Kaelin-Walford/GroupProject/releases)
 
-change requirements of 32 have been implemented, which is percentage
+22 requirements of 32 have been implemented, which is 68.75
 
 | ID | Name                                                                                                  | Met | Screenshot                                                                      |
 |----|-------------------------------------------------------------------------------------------------------|-----|---------------------------------------------------------------------------------|
@@ -36,13 +36,13 @@ change requirements of 32 have been implemented, which is percentage
 | 20 | The top N populated capital cities in the world where N is provided by the user.                      | Yes | ![CapitalCitiesTopN.png](screenshots%2FCapitalCitiesTopN.png)                   |
 | 21 | The top N populated capital cities in a continent where N is provided by the user.                    | Yes | ![CapitalCitiesContinentTopN.png](screenshots%2FCapitalCitiesContinentTopN.png) |
 | 22 | The top N populated capital cities in a region where N is provided by the user.                       | Yes | ![CapitalCitiesRegionTopN.png](screenshots%2FCapitalCitiesRegionTopN.png)       |
-| 23 | The population of people, people living in cities, and people not living in cities in each continent. | Yes | Screenshot                                                                      |
-| 24 | The population of people, people living in cities, and people not living in cities in each region.    | Yes | Screenshot                                                                      |
-| 25 | The population of people, people living in cities, and people not living in cities in each country.   | Yes | Screenshot                                                                      |
-| 26 | The population of the world.                                                                          | Yes | Screenshot                                                                      |
-| 27 | The population of a continent.                                                                        | Yes | Screenshot                                                                      |
-| 28 | The population of a region.                                                                           | Yes | Screenshot                                                                      |
-| 29 | The population of a country.                                                                          | Yes | Screenshot                                                                      |
-| 30 | The population of a district.                                                                         | Yes | Screenshot                                                                      |
-| 31 | The population of a city.                                                                             | Yes | Screenshot                                                                      |
-| 32 | Language report                                                                                       | Yes | Screenshot                                                                      |
+| 23 | The population of people, people living in cities, and people not living in cities in each continent. | No  | Screenshot                                                                      |
+| 24 | The population of people, people living in cities, and people not living in cities in each region.    | No  | Screenshot                                                                      |
+| 25 | The population of people, people living in cities, and people not living in cities in each country.   | No  | Screenshot                                                                      |
+| 26 | The population of the world.                                                                          | No  | Screenshot                                                                      |
+| 27 | The population of a continent.                                                                        | No  | Screenshot                                                                      |
+| 28 | The population of a region.                                                                           | No  | Screenshot                                                                      |
+| 29 | The population of a country.                                                                          | No  | Screenshot                                                                      |
+| 30 | The population of a district.                                                                         | No  | Screenshot                                                                      |
+| 31 | The population of a city.                                                                             | No  | Screenshot                                                                      |
+| 32 | Language report                                                                                       | No  | Screenshot                                                                      |
